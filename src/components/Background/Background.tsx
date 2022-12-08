@@ -1,7 +1,7 @@
 import styles from './Background.module.css';
 import refresh from '../../assets/desktop/icon-refresh.svg';
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Phrases, Time } from '../../interfaces/Interface';
 import sun from '../../assets/desktop/icon-sun.svg';
 import moon from '../../assets/desktop/icon-moon.svg'
@@ -16,6 +16,8 @@ const Background= () =>{
     const [info, setInfo] =useState<Time | null >(null);
     const [currentTime, setCurrentTime] =useState<string>('');
     const [isClicked, setItClicked] =useState<boolean>(false);
+
+    const isFirstRender=useRef(true);
 
     const updateQuote=()=>{
       const URL = "https://api.quotable.io/random";
@@ -48,7 +50,11 @@ const Background= () =>{
 
        
 
-      useEffect(()=>{
+      useLayoutEffect(()=>{
+        if(isFirstRender.current){
+           updateTime();
+           isFirstRender.current=false;
+        }
       const interval=setInterval(()=>{
        updateTime();
      }, 1000);

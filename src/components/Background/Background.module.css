@@ -63,14 +63,15 @@
 .timezone{
     color:#fff;
     font-size: 14px;
-    letter-spacing: 1.5px;
+    letter-spacing: 3px;
     margin-top:10px;
+    font-weight: bold;
 }
 
 .title{
     color:#fff;
     font-size: 14px;
-    letter-spacing: 1.5px;
+    letter-spacing: 3px;
 }
 
 .title img{
@@ -125,44 +126,53 @@
 
     .backgroundNight{
         background-image: url('../../assets/desktop/bg-image-nighttime.jpg');
+  
     }
 
     .quotesBox{
-        padding-top:100px;
         padding-left:150px;
+        gap:10px;
     }
 
     .quotes{
-        font-size:18px;
-        width:370px;
-        color:rgb(189, 183, 183);
-        font-weight: bold;
+        font-size:24px;
+        width:550px;
+        color:#FFFFFF;
+        
     }
 
     .author{
-        font-size: 14px;
+        font-size: 18px;
+        color:#FFFFFF;
+        font-weight:bold;
     }
-
+   
+    .refresh img{ 
+        width:25px;
+        margin-top:7px;
+    }
+    
     .timeBox{
         padding-left:150px;
-        padding-top:120px;
-       
+        padding-top:10px;
     }
 
     .currentTime h1{
-        font-size: 82px;
+        font-size: 180px;
     }
     
     .timezone{
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .title{
-        font-size: 18px;
+        font-size: 22px;
     }
 
     .buttonBox{
         margin-left: 150px;
+        width:130px;
+        height:50px;
         
      }
 
