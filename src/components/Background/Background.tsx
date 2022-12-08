@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Background.module.css';
 import refresh from '../../assets/desktop/icon-refresh.svg';
 import axios from "axios";
@@ -9,6 +8,7 @@ import moon from '../../assets/desktop/icon-moon.svg'
 import arrowup from '../../assets/desktop/icon-arrow-up.svg'
 import arrowdown from '../../assets/desktop/icon-arrow-down.svg'
 import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
+
 
 const Background= () =>{
 
@@ -60,10 +60,10 @@ const Background= () =>{
    
   return (
     <>
-    <div className={styles.background}>
+    <div className={parseInt(currentTime)>16 || parseInt(currentTime)<6 ?`${styles.backgroundNight}`:`${styles.backgroundDay}`}>
      <div className={styles.quotesBox}>
       <div>
-      <div className={styles.quotes}>{quotes?.content}
+      <div className={styles.quotes}>"{quotes?.content}"
       </div>
        <p className={styles.author}>{quotes?.author}</p>
     </div>
@@ -72,26 +72,34 @@ const Background= () =>{
       <img src={refresh} alt='refresh'/>
      </div>
     </div>
+    <div>
     <div className={styles.timeBox}>
-     <div className={styles.title}> 
-      <img src={sun} alt='sun'/>Good morning it's currently
-      </div>
+    {parseInt(currentTime)>16 || parseInt(currentTime)<6 ?
+        <div className={styles.title}> 
+        <img src={moon} alt='sun'/>Good Evening it's currently</div>
+       : <div className={styles.title}> 
+         <img src={sun} alt='sun'/>Good morning it's currently
+         </div>}
+    
     <div className={styles.currentTime}>
      <h1>{currentTime}</h1>
     </div>
     <div className={styles.timezone}>
-      {info?.timezone}
+     in {info?.timezone}
     </div>
     </div>
+     <div className={styles.box}>
     <div className={styles.buttonBox} onClick={()=>setItClicked(!isClicked)}>
-    <div className={styles.button}>
-      {!isClicked?'MORE':'LESS'}
-    </div>
+    <p className={styles.button}>
+      {isClicked?'LESS':'MORE'}
+    </p>
     <div className={styles.arrowDown}>
     <img src={!isClicked?arrowdown:arrowup} alt='arrow-down/up'/>
     </div>
     </div>
-    {isClicked?<AdditionalInfo info={info}/>:''}
+    </div>
+     <AdditionalInfo info={info} isClicked={isClicked} currentTime={currentTime}/>
+    </div>
     </div>
     </>
   )

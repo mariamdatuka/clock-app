@@ -8,5 +8,4 @@ export interface Time{
     day_of_year:number;
     timezone:string;
     week_number:number;
-    datetime:string;
 }
