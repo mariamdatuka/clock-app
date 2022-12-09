@@ -66,7 +66,7 @@ const Background= () =>{
    
   return (
     <>
-    <div className={parseInt(currentTime)>16 || parseInt(currentTime)<6 ?`${styles.backgroundNight}`:`${styles.backgroundDay}`}>
+    <div className={parseInt(currentTime)>15 || parseInt(currentTime)<6 ?`${styles.backgroundNight}`:`${styles.backgroundDay}`}>
      <div className={styles.quotesBox}>
       <div>
       <div className={styles.quotes}>"{quotes?.content}"
@@ -80,7 +80,7 @@ const Background= () =>{
     </div>
     <div>
     <div className={styles.timeBox}>
-    {parseInt(currentTime)>16 || parseInt(currentTime)<6 ?
+    {parseInt(currentTime)>15 || parseInt(currentTime)<6 ?
         <div className={styles.title}> 
         <img src={moon} alt='sun'/>Good Evening it's currently</div>
        : <div className={styles.title}> 

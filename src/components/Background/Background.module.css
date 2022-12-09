@@ -33,7 +33,7 @@
     width:330px;
     line-height: 1.5;
     padding-bottom:10px;
-    color:   #d3c3c3;
+    color:  rgb(95, 85, 85);
 
 }
 
@@ -135,9 +135,9 @@
     }
 
     .quotes{
-        font-size:24px;
+        font-size:22px;
         width:550px;
-        color:#FFFFFF;
+        
         
     }
 
