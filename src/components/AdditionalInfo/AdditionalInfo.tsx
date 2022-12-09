@@ -1,15 +1,25 @@
 import React from 'react'
 import styles from './AdditionalInfo.module.css';
-import { Time } from '../../interfaces/Interface';
 import {motion, AnimatePresence} from 'framer-motion';
 
 export interface Props{
-  info: Time | null;
+  timezone:string;
   isClicked:boolean;
   currentTime:string;
 }
 
-function AdditionalInfo({info, isClicked, currentTime}:Props) {
+function AdditionalInfo({ isClicked, currentTime, timezone}:Props) {
+
+  const currentDay: Date | number | bigint | any =new Date();
+  const weekDay:number = currentDay.getDay();
+  const fullYear: Date | number | bigint | any = new Date(currentDay.getFullYear(), 0, 0);
+  const difference: number = currentDay - fullYear;
+  const oneDay: number = 1000 * 60 * 60 * 24;
+  const dayOfYear: number = Math.floor(difference / oneDay);
+  const week = Math.floor(dayOfYear / 7);
+ 
+
+
   return (
     <AnimatePresence>
       {isClicked && 
@@ -25,19 +35,19 @@ function AdditionalInfo({info, isClicked, currentTime}:Props) {
       }}>
         <div>
           <p className={styles.header}>CURRENT TIMEZONE</p>
-          <p className={styles.information}>{info?.timezone}</p>
+          <p className={styles.information}>{timezone}</p>
         </div>
         <div>
           <p className={styles.header}>DAY OF THE WEEK</p>
-          <p className={styles.information}>{info?.day_of_week}</p>
+          <p className={styles.information}>{weekDay}</p>
         </div>
         <div>
           <p className={styles.header}>DAY OF THE YEAR</p>
-          <p className={styles.information}>{info?.day_of_year}</p>
+          <p className={styles.information}>{dayOfYear}</p>
         </div>
         <div>
           <p className={styles.header}>WEEK NUMBER</p>
-          <p className={styles.information}>{info?.week_number}</p>
+          <p className={styles.information}>{week}</p>
         </div>
       </motion.div>
       }

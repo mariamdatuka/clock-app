@@ -2,7 +2,7 @@ import styles from './Background.module.css';
 import refresh from '../../assets/desktop/icon-refresh.svg';
 import axios from "axios";
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { Phrases, Time } from '../../interfaces/Interface';
+import { Phrases} from '../../interfaces/Interface';
 import sun from '../../assets/desktop/icon-sun.svg';
 import moon from '../../assets/desktop/icon-moon.svg'
 import arrowup from '../../assets/desktop/icon-arrow-up.svg'
@@ -13,11 +13,12 @@ import AdditionalInfo from '../AdditionalInfo/AdditionalInfo';
 const Background= () =>{
 
     const [quotes, setQuotes] =useState<Phrases | null>(null);
-    const [info, setInfo] =useState<Time | null >(null);
     const [currentTime, setCurrentTime] =useState<string>('');
     const [isClicked, setItClicked] =useState<boolean>(false);
 
     const isFirstRender=useRef(true);
+
+    const timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     const updateQuote=()=>{
       const URL = "https://api.quotable.io/random";
@@ -40,15 +41,6 @@ const Background= () =>{
         updateQuote();
        }, [])
 
-
-       useEffect(()=>{
-        const URL = "http://worldtimeapi.org/api/ip";
-        axios.get(URL).then((response) => {
-        setInfo(response.data);
-      });
-       }, [])
-
-       
 
       useLayoutEffect(()=>{
         if(isFirstRender.current){
@@ -91,7 +83,7 @@ const Background= () =>{
      <h1>{currentTime}</h1>
     </div>
     <div className={styles.timezone}>
-     in {info?.timezone}
+     in {timezone}
     </div>
     </div>
      <div className={styles.box}>
@@ -104,7 +96,10 @@ const Background= () =>{
     </div>
     </div>
     </div>
-     <AdditionalInfo info={info} isClicked={isClicked} currentTime={currentTime}/>
+     <AdditionalInfo 
+     isClicked={isClicked} 
+     currentTime={currentTime}
+     timezone={timezone}/>
     </div>
     </div>
     </>
